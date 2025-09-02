@@ -101,20 +101,20 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-6 rounded-lg shadow">
                     <h3 class="text-lg font-semibold text-gray-900 mb-2">Objetivo</h3>
-                    <p class="text-gray-600">Padronizar e garantir a eficiência no processo de recebimento e tratamento de devoluções, assegurando conformidade e controle total dos materiais.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Almoxarifado</h3>
-                    <ul class="list-disc list-inside text-gray-600">
-                        <li>Recebimento físico e conferência inicial.</li>
-                        <li>Registros e transferências de depósito.</li>
-                    </ul>
+                    <p class="text-gray-600">Padronizar e garantir a eficiência no processo de recebimento e tratamento de devoluções de produtos, assegurando conformidade e controle total dos materiais.</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow">
                     <h3 class="text-lg font-semibold text-gray-900 mb-2">RMA Devoluções</h3>
                     <ul class="list-disc list-inside text-gray-600">
-                        <li>Validação de NFD e tratativas de divergências.</li>
-                        <li>Descarte/autorização e comunicação com áreas envolvidas.</li>
+                        <li>Recebimento físico e conferência inicial.</li>
+                        <li>Registros e transferências de depósito.</li>
+                        <li>Validação de NFD, tratativas de divergências, descarte/autorização e comunicação com áreas envolvidas.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Auditor/Qualidade</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Análise e validação de divergências quando acionado.</li>
                     </ul>
                 </div>
             </div>
@@ -159,6 +159,19 @@
                             <ul class="list-disc list-inside text-gray-600 mt-2">
                                 <li><strong>Recusa:</strong> Registrar ressalva na NFD, assinar, devolver ao motorista e informar o SAC.</li>
                                 <li><strong>Produtos INOX avariados:</strong> Transferir para <strong>PROD.AT</strong> (Sistema e físico) para descaracterização e baixa.</li>
+                            </ul>
+                            <h4 class="text-base font-bold text-gray-800 mt-4 mb-2">Componentes Avariados de Produto Acabado</h4>
+                            <p class="text-gray-700 font-semibold mt-2">Cenário 1: HÁ estoque para reposição do componente</p>
+                            <ul class="list-disc list-inside text-gray-600 mt-1">
+                                <li>Solicite a reposição do componente e a baixa do insumo avariado no sistema.</li>
+                                <li>Mova o componente danificado para a área <strong>PROD.AT</strong>.</li>
+                                <li>Solicite a descaracterização do material na área <strong>PROD.AT</strong>.</li>
+                            </ul>
+                             <p class="text-gray-700 font-semibold mt-2">Cenário 2: NÃO HÁ estoque para reposição do componente</p>
+                            <ul class="list-disc list-inside text-gray-600 mt-1">
+                                <li>Solicite ao setor de PCP uma ordem de desmontagem para o produto acabado.</li>
+                                <li>Transfira o componente danificado para a área <strong>PROD.AT</strong>.</li>
+                                <li>Solicite a descaracterização do material e a baixa definitiva do item.</li>
                             </ul>
                         </div>
                         <div id="detail-sku" class="detail-card hidden-detail">
@@ -208,8 +221,8 @@
                             <p class="text-gray-600">O motorista não precisa aguardar. A conferência é feita em um segundo momento.</p>
                             <ol class="list-decimal list-inside text-gray-600 mt-2">
                                 <li>Conferir a Nota Fiscal.</li>
-                                <li>Se não houver NFD, solicitar ao RMA administrativo.</li>
-                                <li>Se houver NFD, prosseguir com a conferência física.</li>
+                                <li>Se não houver NFD, solicitar ao RMA administrativo via planilha.</li>
+                                <li>Se houver NFD, prosseguir com a conferência documento × físico.</li>
                                 <li>Realizar o recebimento no sistema, gerar a etiqueta e fixá-la.</li>
                             </ol>
                         </div>
@@ -400,7 +413,6 @@
                 });
             });
 
-
             // Quiz Functionality
             const questions = [
                 {
@@ -409,9 +421,9 @@
                     answer: "1 dia útil"
                 },
                 {
-                    question: "Quem é responsável pela conferência inicial e registros no processo de devolução?",
-                    options: ["RMA Devoluções", "Auditor/Qualidade", "Almoxarifado", "Setor Comercial"],
-                    answer: "Almoxarifado"
+                    question: "De acordo com o POP, quem é responsável pelo recebimento físico e conferência inicial?",
+                    options: ["Almoxarifado", "Auditor/Qualidade", "RMA Devoluções", "Setor Comercial"],
+                    answer: "RMA Devoluções"
                 },
                 {
                     question: "O que deve ser verificado na conferência inicial de uma devolução?",
@@ -430,8 +442,8 @@
                 },
                 {
                     question: "Em devoluções de Magalu, Mercado Livre e Correios, o que deve ser feito se não houver NFD?",
-                    options: ["Recusar a devolução", "Solicitar ao RMA administrativo", "Solicitar ao setor Comercial", "Receber o material e aguardar a NFD"],
-                    answer: "Solicitar ao RMA administrativo"
+                    options: ["Recusar a devolução", "Solicitar ao RMA administrativo via planilha", "Solicitar ao setor Comercial", "Receber o material e aguardar a NFD"],
+                    answer: "Solicitar ao RMA administrativo via planilha"
                 },
                 {
                     question: "Qual a observação que deve ser inserida na NFD quando o produto está em conformidade?",
@@ -452,6 +464,11 @@
                     question: "Após o recebimento sem divergências, onde o produto é alocado no sistema?",
                     options: ["BO.AT", "REC.AT", "REC.DESC", "PROD.AT"],
                     answer: "REC.AT"
+                },
+                {
+                    question: "Se não houver estoque para a reposição de um componente avariado, qual a ação inicial a ser tomada?",
+                    options: ["Solicitar a baixa do material imediatamente", "Recusar o produto para o cliente", "Solicitar ao setor de PCP uma ordem de desmontagem", "Avisar o setor comercial sobre a falta de estoque"],
+                    answer: "Solicitar ao setor de PCP uma ordem de desmontagem"
                 }
             ];
 
